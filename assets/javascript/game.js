@@ -8,20 +8,20 @@
 
 // data in objects
 var dataKyans = [
-  {"name":"Jennifer Lawrence", "hint":'Actress<br>Katness in "The Hunger Games"', "img": 'assets/images/jenniferlawrence.png'},
-  {"name":"Ashley Judd", "hint":'Actress<br>"Kiss the Girls"<br>"Double Jeopardy"', "img": 'assets/images/ashleyjudd.png'},
-  {"name":"George Clooney", "hint":'Actor<br>"Oceans Eleven"<br>"Gravity"', "img": 'assets/images/georgeclooney.png'},
-  {"name":"Johnny Depp", "hint":'Actor<br>Captain Jack Sparrow', "img": 'assets/images/johnnydepp.png'},
-  {"name":"Mitch McConnell", "hint":'US Senate Majority Leader', "img": 'assets/images/mitchmcconnell.png'},
-  {"name":"Mohammed Ali", "hint":'Athlete<br>aka "The Greatest"<br>Cassius Clay', "img": 'assets/images/mohammedali.png'},
-  {"name":"Secretariat", "hint":'Triple Crown winner 1973<br>Retired to stud at Claiborne Farm', "img": 'assets/images/secretariat.png'},
-  {"name":"Jim Bowie", "hint":'Hero of the Alamo<br>Inventor of the Bowie Knife', "img": 'assets/images/jimbowie.png'},
-  {"name":"Duncan Hines", "hint":'Restaurant Guide Publisher<br>Best known for cake mixes', "img": 'assets/images/duncanhines.png'},
-  {"name":"Hunter S Thompson", "hint":'Gonzo Journalist', "img": 'assets/images/huntersthompson.png'},
-  {"name":"Diane Sawyer", "hint":'ABC Good Morning America Host<br>Female Television Journalist', "img": 'assets/images/dianesawyer.png'},
-  {"name":"Abraham Lincoln", "hint":'Sixteenth US President<br>Profile is on the penny', "img": 'assets/images/abrahamlincoln.png'},
-  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach', "img": 'assets/images/patriley.png'},
-  {"name":"Tom Cruise", "hint":'Actor<br>"Mission Impossible"<br>"Risky Business"', "img": 'assets/images/tomcruise.png'}]
+  {"name":"Jennifer Lawrence", "hint":'Actress<br>Katness in "The Hunger Games"', "img": 'assets/images/jenniferlawrence.PNG'},
+  {"name":"Ashley Judd", "hint":'Actress<br>"Kiss the Girls"<br>"Double Jeopardy"', "img": 'assets/images/ashleyjudd.PNG'},
+  {"name":"George Clooney", "hint":'Actor<br>"Oceans Eleven"<br>"Gravity"', "img": 'assets/images/georgeclooney.PNG'},
+  {"name":"Johnny Depp", "hint":'Actor<br>Captain Jack Sparrow', "img": 'assets/images/johnnydepp.PNG'},
+  {"name":"Mitch McConnell", "hint":'US Senate Majority Leader', "img": 'assets/images/mitchmcconnell.PNG'},
+  {"name":"Mohammed Ali", "hint":'Athlete<br>aka "The Greatest"<br>Cassius Clay', "img": 'assets/images/mohammedali.PNG'},
+  {"name":"Secretariat", "hint":'Triple Crown winner 1973<br>Retired to stud at Claiborne Farm', "img": 'assets/images/secretariat.PNG'},
+  {"name":"Jim Bowie", "hint":'Hero of the Alamo<br>Inventor of the Bowie Knife', "img": 'assets/images/jimbowie.PNG'},
+  {"name":"Duncan Hines", "hint":'Restaurant Guide Publisher<br>Best known for cake mixes', "img": 'assets/images/duncanhines.PNG'},
+  {"name":"Hunter S Thompson", "hint":'Gonzo Journalist', "img": 'assets/images/huntersthompson.PNG'},
+  {"name":"Diane Sawyer", "hint":'ABC Good Morning America Host<br>Female Television Journalist', "img": 'assets/images/dianesawyer.PNG'},
+  {"name":"Abraham Lincoln", "hint":'Sixteenth US President<br>Profile is on the penny', "img": 'assets/images/abrahamlincoln.PNG'},
+  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach', "img": 'assets/images/patriley.PNG'},
+  {"name":"Tom Cruise", "hint":'Actor<br>"Mission Impossible"<br>"Risky Business"', "img": 'assets/images/tomcruise.PNG'}]
 var gameHeadingText = document.getElementById("game-heading-text");
 var gameState = "pregame";
 var myNBSP = String.fromCharCode(160);
