@@ -11,7 +11,8 @@ var dataKyans = [
   {"name":"Hunter S Thompson", "hint":'Gonzo Journalist'},
   {"name":"Diane Sawyer", "hint":'ABC Good Morning America Host<br>Female Television Journalist'},
   {"name":"Abraham Lincoln", "hint":'Sixteenth US President<br>Profile is on the penny'},
-  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach'}]
+  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach'},
+  {"name":"Tom Cruise", "hint":'Actor<br>"Mission Impossible"<br>"Risky Business"'}]
 var gameHeadingText = document.getElementById("game-heading-text");
 var gameState = "pregame";
 var myNBSP = String.fromCharCode(160);
@@ -32,6 +33,7 @@ var currSolution;
 
 document.onkeyup = function(event) {
   var userInputKeyCode = event.keyCode;
+  if (gameState === "gameover") {return}
   if (userInputKeyCode != 32 && (userInputKeyCode < 65 || userInputKeyCode > 90)) {return}
   if (gameState === "midgame" && userInputKeyCode === 32) {return}
   if (gameState === "pregame" && userInputKeyCode >= 65 && userInputKeyCode <= 90) {return}
@@ -73,7 +75,11 @@ function solutionFormatter(solution) {
 }
 
 function gameHandler(input) {
-  if (gameState === "pregame") {
+  if (gameState === "gameover") {
+    puzzleStatusText.innerHTML = "You've completed all<br> the puzzles<br>Game over.";
+    triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
+    priorGuessesText.textContent = "Refresh the page play again";
+  } else if (gameState === "pregame") {
     priorGuesses = "";
     userTries = 12;
     var loopBreaker = 0;
@@ -81,7 +87,7 @@ function gameHandler(input) {
     while (priorSelectors.indexOf(randomSelector) >= 0) {
       loopBreaker++;
       randomSelector = Math.floor(Math.random() * dataKyans.length);
-      if (loopBreaker > 100) {
+      if (loopBreaker > 1000) {
         console.log("Help me! I'm out of control!");
         return
       }
@@ -93,7 +99,7 @@ function gameHandler(input) {
     puzzleState = initState(puzzleSolution);
     puzzleHintText.innerHTML = currSolution.hint;
     selectorCounter++;
-    gameHeadingText.textContent = "Famous Kentuckian #" + selectorCounter + " (of 13)";
+    gameHeadingText.textContent = "Famous Kentuckian #" + selectorCounter + " (of "+ dataKyans.length + ")";
     puzzleStatusText.textContent = writePuzDisTxt(puzzleSolution, puzzleState);
     puzzleDisplayText.innerHTML = "Start guessing letters now...<br>we'll see if they're in the puzzle.";
     triesRemainingText.textContent = "Tries remaining = " + userTries
@@ -107,18 +113,22 @@ function gameHandler(input) {
       userLosses++;
       triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
       priorGuessesText.textContent = "Hit the spacebar to play again";
-      gameState = "pregame"
+      if (priorSelectors.length >= dataKyans.length) {
+        gameState = "gameover";
+      } else {
+        gameState = "pregame";
+      }
     } else if (isWinner(puzzleSolution, puzzleState)) {
       puzzleDisplayText.textContent = "Winner! Great job!";
       puzzleStatusText.textContent = currSolution.name;
       userWins++;
       triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
       priorGuessesText.textContent = "Hit the spacebar to play again";
-      gameState = "pregame"
-    } else if (priorSelectors.length >= dataKyans.length) {
-      puzzleStatusText.innerHTML = "You've completed all<br> the puzzles<br>Game over.";
-      triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
-      priorGuessesText.textContent = "Refresh the page play again";
+      if (priorSelectors.length >= dataKyans.length) {
+        gameState = "gameover";
+      } else {
+        gameState = "pregame";
+      }
     } else {
       puzzleDisplayText.textContent = "Keep guessing ...";
       triesRemainingText.textContent = "Tries remaining = " + userTries
