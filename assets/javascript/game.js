@@ -33,8 +33,9 @@ var currSolution;
 
 document.onkeyup = function(event) {
   var userInputKeyCode = event.keyCode;
-  if (gameState === "gameover") {return}
-  if (userInputKeyCode != 32 && (userInputKeyCode < 65 || userInputKeyCode > 90)) {return}
+  if (gameState === "gameover") {
+    gameHandler();
+  } else if (userInputKeyCode != 32 && (userInputKeyCode < 65 || userInputKeyCode > 90)) {return}
   if (gameState === "midgame" && userInputKeyCode === 32) {return}
   if (gameState === "pregame" && userInputKeyCode >= 65 && userInputKeyCode <= 90) {return}
   if (userInputKeyCode === 32) {
@@ -78,6 +79,7 @@ function gameHandler(input) {
   if (gameState === "gameover") {
     puzzleStatusText.innerHTML = "You've completed all<br> the puzzles<br>Game over.";
     triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
+    puzzleDisplayText.innerHTML = "Nice Job! You're now an<br>Honary Kentuckian!";
     priorGuessesText.textContent = "Refresh the page play again";
   } else if (gameState === "pregame") {
     priorGuesses = "";
