@@ -8,20 +8,20 @@
 
 // data in objects
 var dataKyans = [
-  {"name":"Jennifer Lawrence", "hint":'Actress<br>Katness in "The Hunger Games"'},
-  {"name":"Ashley Judd", "hint":'Actress<br>"Kiss the Girls"<br>"Double Jeopardy"'},
-  {"name":"George Clooney", "hint":'Actor<br>"Oceans Eleven"<br>"Gravity"'},
-  {"name":"Johnny Depp", "hint":'Actor<br>Captain Jack Sparrow'},
-  {"name":"Mitch McConnell", "hint":'US Senate Majority Leader'},
-  {"name":"Mohammed Ali", "hint":'Athlete<br>aka "The Greatest"<br>Cassius Clay'},
-  {"name":"Secretariat", "hint":'Triple Crown winner 1973<br>Retired to stud at Claiborne Farm'},
-  {"name":"Jim Bowie", "hint":'Hero of the Alamo<br>Inventor of the Bowie Knife'},
-  {"name":"Duncan Hines", "hint":'Restaurant Guide Publisher<br>Best known for cake mixes'},
-  {"name":"Hunter S Thompson", "hint":'Gonzo Journalist'},
-  {"name":"Diane Sawyer", "hint":'ABC Good Morning America Host<br>Female Television Journalist'},
-  {"name":"Abraham Lincoln", "hint":'Sixteenth US President<br>Profile is on the penny'},
-  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach'},
-  {"name":"Tom Cruise", "hint":'Actor<br>"Mission Impossible"<br>"Risky Business"'}]
+  {"name":"Jennifer Lawrence", "hint":'Actress<br>Katness in "The Hunger Games"', "img": 'assets/images/jenniferlawrence.png'},
+  {"name":"Ashley Judd", "hint":'Actress<br>"Kiss the Girls"<br>"Double Jeopardy"', "img": 'assets/images/ashleyjudd.png'},
+  {"name":"George Clooney", "hint":'Actor<br>"Oceans Eleven"<br>"Gravity"', "img": 'assets/images/georgeclooney.png'},
+  {"name":"Johnny Depp", "hint":'Actor<br>Captain Jack Sparrow', "img": 'assets/images/johnnydepp.png'},
+  {"name":"Mitch McConnell", "hint":'US Senate Majority Leader', "img": 'assets/images/mitchmcconnell.png'},
+  {"name":"Mohammed Ali", "hint":'Athlete<br>aka "The Greatest"<br>Cassius Clay', "img": 'assets/images/mohammedali.png'},
+  {"name":"Secretariat", "hint":'Triple Crown winner 1973<br>Retired to stud at Claiborne Farm', "img": 'assets/images/secretariat.png'},
+  {"name":"Jim Bowie", "hint":'Hero of the Alamo<br>Inventor of the Bowie Knife', "img": 'assets/images/jimbowie.png'},
+  {"name":"Duncan Hines", "hint":'Restaurant Guide Publisher<br>Best known for cake mixes', "img": 'assets/images/duncanhines.png'},
+  {"name":"Hunter S Thompson", "hint":'Gonzo Journalist', "img": 'assets/images/huntersthompson.png'},
+  {"name":"Diane Sawyer", "hint":'ABC Good Morning America Host<br>Female Television Journalist', "img": 'assets/images/dianesawyer.png'},
+  {"name":"Abraham Lincoln", "hint":'Sixteenth US President<br>Profile is on the penny', "img": 'assets/images/abrahamlincoln.png'},
+  {"name":"Pat Riley", "hint":'Miami Heat Team President<br>Former Head Coach', "img": 'assets/images/patriley.png'},
+  {"name":"Tom Cruise", "hint":'Actor<br>"Mission Impossible"<br>"Risky Business"', "img": 'assets/images/tomcruise.png'}]
 var gameHeadingText = document.getElementById("game-heading-text");
 var gameState = "pregame";
 var myNBSP = String.fromCharCode(160);
@@ -32,6 +32,7 @@ var puzzleHintText = document.getElementById("puzzle-hint-text");
 var puzzleDisplayText = document.getElementById("puzzle-state-text");
 var puzzleSolution = [];
 var puzzleState = [];
+var puzzleStatusDiv = document.getElementById("puzzle-status-div");
 var puzzleStatusText = document.getElementById("puzzle-status-text");
 var selectorCounter = 0;
 var triesRemainingText = document.getElementById("tries-remaining-text");
@@ -102,7 +103,8 @@ function solutionFormatter(solution) {
 function gameHandler(input) {
   // write to display based on game state
   if (gameState === "gameover") {
-    puzzleStatusText.innerHTML = "You've completed all<br> the puzzles<br>Game over.";
+    //puzzleStatusText.innerHTML = "You've completed all<br> the puzzles<br>Game over.";
+    puzzleStatusDiv.innerHTML = '<h1 id="puzzle-status-text">Fill in the blanks<br>by guessing letters.</h1>';
     triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
     puzzleDisplayText.innerHTML = "Nice Job! You're now an<br>Honary Kentuckian!";
     priorGuessesText.textContent = "Refresh the page play again";
@@ -139,8 +141,9 @@ function gameHandler(input) {
     // give a sense of game progress, item x of y items
     selectorCounter++;
     // display information
-    gameHeadingText.textContent = "Famous Kentuckian #" + selectorCounter + " (of "+ dataKyans.length + ")";
-    puzzleStatusText.textContent = writePuzDisTxt(puzzleSolution, puzzleState);
+    gameHeadingText.textContent = "Kentuckian #" + selectorCounter + " (of "+ dataKyans.length + ")";
+    // puzzleStatusText.textContent = writePuzDisTxt(puzzleSolution, puzzleState);
+    puzzleStatusDiv.innerHTML = '<h1 id="puzzle-status-text">' + writePuzDisTxt(puzzleSolution, puzzleState) + '</h1>';
     puzzleDisplayText.innerHTML = "Start guessing letters now...<br>we'll see if they're in the puzzle.";
     triesRemainingText.textContent = "Tries remaining = " + userTries
     // change game state from new to in progress
@@ -149,11 +152,13 @@ function gameHandler(input) {
   	// query the puzzle for guess correctness
     puzzleState = attemptHandler(puzzleSolution, puzzleState, input);
     // refresh puzzle display in it's current state
-    puzzleStatusText.textContent = writePuzDisTxt(puzzleSolution, puzzleState);
+    //puzzleStatusText.textContent = writePuzDisTxt(puzzleSolution, puzzleState);
+    puzzleStatusDiv.innerHTML = '<h1 id="puzzle-status-text">' + writePuzDisTxt(puzzleSolution, puzzleState) + '</h1>';
     // check for end of this round
     // first, did they lose the round?
     if (userTries <= 0) {
-      puzzleStatusText.textContent = "Oops, you've run out of tries ... Game over.";
+      // puzzleStatusText.textContent = "Oops, you've run out of tries ... Game over.";
+      puzzleStatusDiv.innerHTML = '<h1 id="puzzle-status-text">' + "Oops, you've run out of tries<br>Game over.</h1>";
       // display correct answer
       puzzleDisplayText.textContent = "Correct answer = " + currSolution.name;
       // increment loss counter
@@ -170,8 +175,11 @@ function gameHandler(input) {
       // check if they won the round
     } else if (isWinner(puzzleSolution, puzzleState)) {
       puzzleDisplayText.textContent = "Winner! Great job!";
-      // display correct answer
-      puzzleStatusText.textContent = currSolution.name;
+      // display picture and correct answer
+      // puzzleStatusText.innerHTML = currSolution.name
+      // '<h1 id="puzzle-status-text">' + writePuzDisTxt(puzzleSolution, puzzleState) + '</h1>';      
+      // puzzleStatusDiv.innerHTML = '<img src="' + currSolution.img + '" />' + puzzleStatusDiv.innerHTML
+      puzzleStatusDiv.innerHTML = '<img src="' + currSolution.img + '" /><h1>' + currSolution.name + '</h1>';
       // increment win counter
       userWins++;
       triesRemainingText.textContent = "Wins = " + userWins + ", Losses = " + userLosses;
