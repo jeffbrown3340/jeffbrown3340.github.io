@@ -1,32 +1,49 @@
-<!-- Reset.css -->
 <!DOCTYPE html>
 <html lang="en-us">
-
   <head>
-
     <meta charset="UTF-8">
-    <title>Example Page</title>
-    <!-- Uncomment the following line to see how this stylesheet works-->
-    <!--Try enabling and then disabling it more than once.-->
-    <!-- <link rel="stylesheet" href="reset.css"> -->
-    
+    <title>Jeff Browns Hangman Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   </head>
-
   <body>
-
-  <h1>Jeff's Sample Page</h1>
-
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus labore ut, eum! Repellat, beatae dolorem minus sapiente iste nihil explicabo impedit eos consequuntur illum corporis autem vitae cum aperiam mollitia.</p>
-
-  <h2>He doesn't know Latin, BTW</h2>
-
-  <ul>
-    <li>Fruit</li>
-    <li>Fiber</li>
-    <li>Flesh</li>
-    <li>Fire</li>
-  </ul>
-
+  <body>
+    <div class="container">
+      <div class="row bg-primary text-white text-center">
+        <div class="col-md-offset-2 col-md-8">
+          <h4 id="game-page-title">&nbsp;</h4>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-offset-2 col-md-8 text-primary">
+            <h3>Hangman Game (Jeff Brown)</h3>
+            <h1 id="game-heading-text"><b>Famous Kentuckians</b></h1>
+        </div>
+      </div>
+      <div class="row bg-primary text-white text-center">
+        <div class="col-md-offset-2 col-md-8">
+            <h1 id="puzzle-hint-text">We'll give you a hint ...</h1>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-offset-2 col-md-8 text-primary">
+            <h1 id="puzzle-status-text">Fill in the blanks<br>by guessing letters.</h1>
+        </div>
+      </div>
+      <div class="row bg-primary text-white text-center">
+        <div class="col-md-offset-2 col-md-8">
+            <h1 id="puzzle-state-text">Incorrect guesses<br>will display below.</h1>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-offset-2 col-md-8 text-primary">
+            <h1 id="tries-remaining-text">Twelve guesses<br>for each puzzle.</h1>
+        </div>
+      </div>
+      <div class="row bg-primary text-white text-center">
+        <div class="col-md-offset-2 col-md-8">
+            <h1 id="prior-guesses-text">Press the spacebar<br>to get started.</h1>
+        </div>
+      </div>
+    <script src="assets\javascript\game.js"></script>
   </body>
-
 </html>
